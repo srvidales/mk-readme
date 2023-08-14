@@ -16,15 +16,38 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   console.log('renderLicenseSection')
-  renderLicenseBadge();
-  renderLicenseLink();
+  renderLicenseBadge(license);
+  renderLicenseLink(license);
   return '';
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  renderLicenseSection();
   return `# ${data.title}
+  
+## Description
+${data.description}
+
+## Table of Contents
+${data.toc}
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+## License
+${renderLicenseSection(data.license)}
+
+## Contributing
+${data.contributing}
+
+## Tests
+${data.tests}
+
+## Questions
+${data.questions}
 
 `;
 }
