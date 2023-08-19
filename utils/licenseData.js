@@ -1,3 +1,4 @@
+const LicenseData =
 {
   "licenses": [
     {
@@ -35,7 +36,7 @@
           "name": "BSD 3-Clause License",
           "badges": [
             {
-              "badge": "https://img.shields.io/badge/License-BSD_3--Clause-blue.svg[![License]()]()",
+              "badge": "https://img.shields.io/badge/License-BSD_3--Clause-blue.svg",
               "text": "https://opensource.org/licenses/BSD-3-Clause"
             }
           ]
@@ -437,3 +438,5 @@
     }
   ]
 }
+
+module.exports = LicenseData;
