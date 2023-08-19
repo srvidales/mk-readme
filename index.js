@@ -10,42 +10,48 @@ const questions = [
     {type: 'editor', name:'description', message:'What is an appropriate description?'},
     {type: 'editor', name:'installation', message:'What are the installation instructions?'},
     {type: 'editor', name:'usage', message:'What is the usage information?'},
-    addLicenseQuestion(),
+    {type: 'list', name:'license', message:'What is license?', choices:eval('extractChoices()')},
     {type: 'editor', name:'contributing', message:'Who is contributing?'},
     {type: 'editor', name:'tests', message:'What are the tests?'},
     {type: 'editor', name:'questions', message:'What are the questions?'},
 ];
 
-function addLicenseQuestion() {
-    let choices = [];
-    licenseData.licenses.map((value, index, array) => {
+function mapBadges(info, licenseIndex, licenseData, choices) {
+    info.badges.map((badge, index) => {
+        licenseIndex.badgeIndex = index;
+        if ('title' in badge) {
+            licenseData.title = badge.title;
+        } else {
+            licenseData.title = null;
+        }
+        let name = `${licenseData.brand} - ${licenseData.name}${licenseData.title ? ` - ${licenseData.title}` : ''}`;
+        let choice = {name, value: licenseIndex}
+        choices.push(choice);
+    })
+}
+
+function mapInfo(license, licenseIndex, licenseData, choices) {
+    license.info.map((info, index) => {
+        licenseIndex.infoIndex = index;
+        licenseData.name = info.name;
+        mapBadges(info, licenseIndex, licenseData, choices);
+    })
+}
+
+function mapLicense(choices) {
+    licenseData.licenses.map((license, index) => {
         let licenseIndex = {license: null, info: null, badge: null}
         let licenseData = {};
-        array.map((license, index) => {
-            licenseIndex.license = index;
-            licenseData.brand = license.brand;
-            license.info.map((info, index) => {
-                licenseIndex.info = index;
-                licenseData.name = info.name;
-                info.badges.map((badge, index) => {
-                    licenseIndex.badge = index;
-                    if ('title' in badge) {
-                        licenseData.title = badge.title;
-                    } else {
-                        licenseData.title = null;
-                    }
-                    let name = `${licenseData.brand} - ${licenseData.name} - ${licenseData.title}`;
-                    let choice = { name, value:licenseIndex }
-                    choices.push(choice);
-                    console.log(name);
-                    console.log(choice);
-                })
-            })
-        })
+        licenseIndex.licenseIndex = index;
+        licenseData.brand = license.brand;
+        mapInfo(license, licenseIndex, licenseData, choices);
     })
-    console.log(choices);
+}
+
+function extractChoices() {
+    let choices = [];
+    mapLicense(choices);
     return choices;
-    // return {type: 'list', name:'license', message:'What is license?', choices:[ {name:'a', value:'1'}, {name:'b', value:'2'}, {name:'c', value:'3'}]};
 }
 
 // TODO: Create a function to write README file
@@ -72,7 +78,6 @@ function promptUser() {
 `
 
             const markdown = generateMarkdown(data);
-            console.log(markdown);
             writeToFile('README.md', markdown)
         });
 

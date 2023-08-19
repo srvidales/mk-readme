@@ -3,26 +3,30 @@ const licenseData = require('./licenseData');
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  console.log('renderLicenseBadge')
-  return licenseData.licenses[3].info[0].badges[0].badge;
+  return licenseData
+      .licenses[license.licenseIndex]
+      .info[license.infoIndex]
+      .badges[license.badgeIndex]
+      .badge;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  console.log('renderLicenseLink')
-  return licenseData.licenses[3].info[3].badges[0].text;
+  return licenseData
+      .licenses[license.licenseIndex]
+      .info[license.infoIndex]
+      .badges[license.badgeIndex]
+      .text;
 }
 
 function renderLicenseTitle(license) {
-  console.log('renderLicenseTitle')
-  return `: ${licenseData.licenses[3].info[3].badges[0].title}`;
+  return `: ${licenseData.licenses[license.licenseIndex].info[license.infoIndex].badges[license.badgeIndex].title}`;
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  console.log('renderLicenseSection')
   return `[![License${renderLicenseTitle(license)}](${renderLicenseBadge(license)})](${renderLicenseLink(license)})`;
 }
 
