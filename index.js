@@ -16,6 +16,10 @@ const questions = [
     {type: 'editor', name:'questions', message:'What are the questions?'},
 ];
 
+/**
+ * Loops through license, info and badge to generate choices for inquirer.
+ * @returns {*[]} Populated inquirer choices array
+ */
 function generateChoices() {
     let choices = [];
 
@@ -46,6 +50,11 @@ function generateChoices() {
 }
 
 // TODO: Create a function to write README file
+/**
+ * Writes data to file.
+ * @param fileName The file name to use.
+ * @param data The data to write to the file.
+ */
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
         if (err) {
@@ -55,6 +64,10 @@ function writeToFile(fileName, data) {
     });
 }
 
+/**
+ * Using inquirer prompt user to enter all README.md information.
+ * @returns {any}
+ */
 function promptUser() {
 
     return inquirer.prompt(questions)
@@ -75,6 +88,9 @@ function promptUser() {
 }
 
 // TODO: Create a function to initialize app
+/**
+ * Initialize app.
+ */
 function init() {
     promptUser()
 }
