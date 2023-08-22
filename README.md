@@ -65,5 +65,5 @@ Currently, this project does not include any tests.
 
 
 ## Questions
-Feel free to reach out with additional questions here: [Contact Me](mailto:srvidales@gmail.com) or here [GitHub](https://github.com/srvidales).
+Feel free to reach out with additional questions here: [Contact Me](mailto://srvidales@gmail.com) or here [GitHub](https://github.com/srvidales).
 
