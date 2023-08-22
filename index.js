@@ -10,10 +10,11 @@ const questions = [
     {type: 'editor', name:'description', message:'What is an appropriate description?'},
     {type: 'editor', name:'installation', message:'What are the installation instructions?'},
     {type: 'editor', name:'usage', message:'What is the usage information?'},
-    {type: 'list', name:'license', message:'What is license?', choices:eval('generateChoices()')},
+    {type: 'list', name:'license', message:'What license to use?', choices:eval('generateChoices()')},
     {type: 'editor', name:'contributing', message:'Who is contributing?'},
     {type: 'editor', name:'tests', message:'What are the tests?'},
-    {type: 'editor', name:'questions', message:'What are the questions?'},
+    {type: 'input', name:'username', message:'What is the GitHub username?'},
+    {type: 'input', name:'email', message:'What is the user email?'},
 ];
 
 /**

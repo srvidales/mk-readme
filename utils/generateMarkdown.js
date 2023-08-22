@@ -70,10 +70,17 @@ function renderLicenseTitle(license) {
 function renderLicenseSection(license) {
   if (!isAnyLicensePropertyNull(license)) {
     const markdown = `[![License${renderLicenseTitle(license)}](${renderLicenseBadge(license)})](${renderLicenseLink(license)})`;
-    console.log(markdown);
     return markdown;
   } else {
     return '';
+  }
+}
+
+function renderQuestionSection(username, email) {
+  if (username === '' || email === '') {
+    return ``;
+  } else {
+    return `Feel free to reach out with additional questions here: [Contact Me](mailto:${email}) or here [GitHub](https://github.com/${username}).`;
   }
 }
 
@@ -108,7 +115,7 @@ ${data.contributing}
 ${data.tests}
 
 ## Questions
-${data.questions}
+${renderQuestionSection(data.username, data.email)}
 
 `;
 }
