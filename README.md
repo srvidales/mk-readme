@@ -51,7 +51,7 @@ npm start
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contributing
-- [Sergio Vidales Perez](mailto:srvidales@gmail.com)
+- [Sergio Vidales Perez](mailto://srvidales@gmail.com)
 
 [Starter code](https://github.com/coding-boot-camp/potential-enigma) provided.
 - [Xander Rapstine](https://github.com/Xandromus)
