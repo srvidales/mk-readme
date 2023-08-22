@@ -10,48 +10,39 @@ const questions = [
     {type: 'editor', name:'description', message:'What is an appropriate description?'},
     {type: 'editor', name:'installation', message:'What are the installation instructions?'},
     {type: 'editor', name:'usage', message:'What is the usage information?'},
-    {type: 'list', name:'license', message:'What is license?', choices:eval('extractChoices()')},
+    {type: 'list', name:'license', message:'What is license?', choices:eval('generateChoices()')},
     {type: 'editor', name:'contributing', message:'Who is contributing?'},
     {type: 'editor', name:'tests', message:'What are the tests?'},
     {type: 'editor', name:'questions', message:'What are the questions?'},
 ];
 
-function mapBadges(info, licenseIndex, licenseData, choices) {
-    info.badges.map((badge, index) => {
-        licenseIndex.badgeIndex = index;
-        if ('title' in badge) {
-            licenseData.title = badge.title;
-        } else {
-            licenseData.title = null;
-        }
-        let name = `${licenseData.brand} - ${licenseData.name}${licenseData.title ? ` - ${licenseData.title}` : ''}`;
-        let choice = {name, value: licenseIndex}
-        choices.push(choice);
-    })
-}
-
-function mapInfo(license, licenseIndex, licenseData, choices) {
-    license.info.map((info, index) => {
-        licenseIndex.infoIndex = index;
-        licenseData.name = info.name;
-        mapBadges(info, licenseIndex, licenseData, choices);
-    })
-}
-
-function mapLicense(choices) {
-    licenseData.licenses.map((license, index) => {
-        let licenseIndex = {license: null, info: null, badge: null}
-        let licenseData = {};
-        licenseIndex.licenseIndex = index;
-        licenseData.brand = license.brand;
-        mapInfo(license, licenseIndex, licenseData, choices);
-    })
-}
-
-function extractChoices() {
+function generateChoices() {
     let choices = [];
-    mapLicense(choices);
+
+    licenseData.licenses.forEach((license, licenseIndex) => {
+        let indexes = {}
+        let token = {};
+        indexes.licenseIndex = licenseIndex;
+        token.brand = license.brand;
+        license.info.forEach((info, infoIndex) => {
+            indexes.infoIndex = infoIndex;
+            token.name = info.name;
+            info.badges.forEach((badge, badgeIndex) => {
+                indexes.badgeIndex = badgeIndex;
+                if ('title' in badge) {
+                    token.title = badge.title;
+                    name = `${token.brand}/${token.name}/${token.title}`
+                } else {
+                    name = `${token.brand}/${token.name}`
+                }
+                const choice = { name, value: Object.assign({}, indexes)};
+                choices.push(choice);
+            })
+        })
+    })
+
     return choices;
+
 }
 
 // TODO: Create a function to write README file
