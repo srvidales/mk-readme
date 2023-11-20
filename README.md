@@ -8,9 +8,12 @@ The challenge itself can be
 found [here](https://bootcampspot.instructure.com/courses/3826/assignments/57169?module_item_id=1006045)
 and [here](https://git.bootcampcontent.com/University-of-California---Berkeley/UCB-VIRT-FSF-PT-06-2023-U-LOLC/-/tree/main/09-NodeJS/02-Challenge).
 
-
+## Link
+Link to video walkthrough: https://drive.google.com/file/d/10PiLN2ZSPk1X2PU7EsiKHFASQHeStXH1/view?usp=sharing
 
 ## Table of Contents
+- [Description](#description)
+- [Link](#link)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
